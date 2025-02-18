@@ -1,5 +1,7 @@
+import CallToAction from "@/sections/CallToAction";
 import Faqs from "@/sections/Faqs";
 import Features from "@/sections/Features";
+import Footer from "@/sections/Footer";
 import Hero from "@/sections/Hero";
 import Integrations from "@/sections/Integrations";
 import Introduction from "@/sections/Introduction";
@@ -16,6 +18,8 @@ export default function Home() {
             <Features />
             <Integrations />
             <Faqs />
+            <CallToAction />
+            <Footer />
         </>
     );
 }
