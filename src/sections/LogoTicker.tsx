@@ -1,3 +1,4 @@
+"use client";
 import quantumLogo from "@/assets/images/quantum.svg";
 import acmeLogo from "@/assets/images/acme-corp.svg";
 import echoValleyLogo from "@/assets/images/echo-valley.svg";
@@ -7,6 +8,8 @@ import apexLogo from "@/assets/images/apex.svg";
 import celestialLogo from "@/assets/images/celestial.svg";
 import twiceLogo from "@/assets/images/twice.svg";
 import Image from "next/image";
+import { Fragment } from "react";
+import { motion } from "framer-motion";
 
 const logos = [
     { name: "Quantum", image: quantumLogo },
@@ -26,16 +29,37 @@ export default function LogoTicker() {
                 <h3 className="text-center text-white/50 text-xl">
                     Already chosen by these marker leaders
                 </h3>
-                <div className="overflow-hidden mt-12 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-                    <div className="flex gap-24 pr-24">
-                        {logos.map((logo) => (
-                            <Image
-                                src={logo.image}
-                                key={logo.name}
-                                alt={logo.name}
-                            />
+                <div className="flex overflow-hidden mt-12 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+                    <motion.div
+                        // Moves the element horizontally by -50% of its own width (left direction)
+                        animate={{
+                            x: "-50%",
+                        }}
+                        // Configures the animation to:
+                        // - Run for 30 seconds
+                        // - Use linear timing (constant speed)
+                        // - Loop infinitely
+                        transition={{
+                            duration: 30,
+                            ease: "linear",
+                            repeat: Infinity,
+                        }}
+                        // flex-none: Prevents container shrinking
+                        className="flex flex-none gap-24 pr-24"
+                    >
+                        {Array.from({ length: 2 }).map((_, i) => (
+                            // Creates duplicate logo sets for seamless looping
+                            <Fragment key={i}>
+                                {logos.map((logo) => (
+                                    <Image
+                                        src={logo.image}
+                                        key={logo.name}
+                                        alt={logo.name}
+                                    />
+                                ))}
+                            </Fragment>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>
